@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Key Event Listener</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    #myInput {
+      width: 250px;
+      padding: 12px 20px;
+      margin: 20px 0;
+      border: 2px solid lightblue;
+      background-color: black;
+      color: white;
+      outline: none;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .output {
+      color: rgba(242, 255, 2, 0.85);
+      margin-top: 30px;
+    }
+
+    .output p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .keyPressed {
+      font-size: 2rem;
+      color: #faff00;
+    }
+  </style>
+</head>
+<body>
+  <h1>Key Event Listener</h1>
+  <input type="text" id="myInput" placeholder="Type something..." />
+
+  <div class="output">
+    <p class="keyPressed">Key pressed: </p>
+    <p class="keyCode">Key code: </p>
+    <p class="charCode">Char code: </p>
+    <p class="eventType">Event type: </p>
+  </div>
+
+  <script>
+    const handleKeyPress = (event) => {
+      const key = event.key;
+      const code = event.code;
+      const type = event.type;
+
+      const unicode = key.length === 1 ? key.charCodeAt(0) : "N/A";
+
+      document.querySelector(".keyPressed").textContent = `Key pressed: ${key}`;
+      document.querySelector(".keyCode").textContent = `Key code: ${code}`;
+      document.querySelector(".charCode").textContent = `Char code: ${unicode}`;
+      document.querySelector(".eventType").textContent = `Event type: ${type}`;
+    };
+
+    const myInput = document.getElementById("myInput");
+
+    myInput.addEventListener("keydown", handleKeyPress);
+    myInput.addEventListener("keypress", handleKeyPress);
+    myInput.addEventListener("keyup", handleKeyPress);
+  </script>
+</body>
+</html>
